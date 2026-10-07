@@ -126,3 +126,5 @@ summary(model3)
 anova_result <- anova(model1, model3)
 print(anova_result)
 ```
+
+# Discussion/Conclustions
