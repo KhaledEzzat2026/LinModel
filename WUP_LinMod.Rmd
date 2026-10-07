@@ -1,94 +1,128 @@
 ---
-title: "linear model from Web"
-author: "Your Name"
-date: "Put semester and year"
-output:
-   html_document:
-         toc: true
-         toc_depth: 5
-        
+title: "Linear Model with Prediction"
+author: "Dr. J"
+date: "`r Sys.Date()`"
+output: html_document
 ---
+
+This project is an exploration of linear models. Models are estimated by linear regression.  The data set is from Motor Trend magazine.
+
+The assignment is based on estimation of 3 models:
+1. mpg as a function of cyl
+2. mpg as a function of disp
+3  mpg as a function of both cyl and disp
+
+Complete a linear model with data descripton, a model fit a, and a prediction of mpg based on weigth of 3050 lbs, with a displacement of 122 cubic inches (this is 2.5 L).
+
+use an anova to compare model 2 with model 3
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+# Load the dataset (built-in)
 
-Read about the data from the website where it is staged.  
-
-Form three regression models; 
-  Model1 is SIMS~ARM, 
-  Model2 is SIMS~GRIP, and 
-  Model3 is SIMS~ARM+GRIP. 
-  
-For each model find a 95% prediction interval of SIMS given a value of 94  for GRIP and 88 for ARM. 
-
-After all three models have been constructed, compare Model1 with Model3 using anova. Document the comparison the markdown document, 
-
-As usual, push the project up to your github account and submit the URL to canvas as link. 
-
- 
+```{r}
+data(mtcars)
+```
 
 
-```{r include=FALSE}
-require(tidyverse)
-require(tigerstats)
-require(rgl)
-require(knitr)
+# View first 6 rows and summary
+```{r}
+head(mtcars)
+```
 
+
+
+# Model 1:
+ mpg (miles per gallon) is the response (Y)
+ wt (wt) is the predictor (X)
+
+## data summary
+### graphical summary
+
+
+### numerical summary
+
+### model summary
+
+
+```{r}
+model1 <- lm(mpg ~ wt, data = mtcars)
+
+summary(model1)
+```
+
+
+# Model 2:
+
+
+ mpg (miles per gallon) is the response (Y)
+ wt (wt) is the predictor (X)
+
+## data summary
+### graphical summary
+
+
+### numerical summary
+
+### model summary
+
+
+```{r}
+model2 <- lm(mpg ~ disp, data = mtcars)
+summary(model2)
+```
+
+
+# Model 3 :
+
+ mpg (miles per gallon) is the response (Y)
+ wt and disp are the predictors (X's)
+
+## data summary
+### graphical summary
+```{r}
+plot(mpg ~ wt+disp, data = mtcars)
+```
+
+### numerical summary
+
+### model summary
+model3= lm(mpg ~ wt+disp, data = mtcars)
+model summary (coefficients, R², etc.), summarize the fit
+
+```{r}
+model3= lm(mpg ~ wt+disp, data = mtcars)
+summary(model3)
+```
+ mpg (miles per gallon) is the response (Y)
+ wt (wt) and displacement (disp) are the predictors (X's)
+
+## data summary
+
+### graphical summary
+```{r}
+plot(mpg ~ wt+disp, data=mtcars)
+```
+
+### numerical summary
+
+### model summary
+
+
+# anova: compare models 2 and 3
+
+
+
+model3 <- lm(mpg ~ wt+disp, data = mtcars)
+
+model summary (coefficients, R², etc.)
+
+```{r}
+summary(model3)
 ```
 
 ```{r}
-data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_strength/data.txt",sep="",header=TRUE)  
-
+anova_result <- anova(model1, model3)
+print(anova_result)
 ```
-
-## Model 1 SIM~ARMS
-
-### scatterplot
-
-### Numerical results
-
-
-### Inferential  (Build model.1)
-
-#### Predict at target point
-
-
-#### scatterplot with model fit
-  
-
-## Model 2 SIM~GRIP
-
-### Now add in scatterplot
-
-
-### Numerical results 
-
-
-### Inferential  (Build model.2)
-  
-
-#### predict model.2 at target point
-
-#### now add the model fit to our plot for model.2
-  
-
-
-## Model 3 SIM~ARM+GRIP
-
-### Numerical results (cor)
-
-`
-  
-### Inferential  (Build 2-dimentional model.3)
-
-#### predict model.3 at target point
-  
-
-## Comparing nested models ANOVA Test
-
-### Model.1 vs Model.3
-### Model.2 vs Model.3
-
-## How do the models compare (Model.1 with model.2 in the anova results)?
-
