@@ -8,9 +8,9 @@ output: html_document
 This project is an exploration of linear models. Models are estimated by linear regression.  The data set is from Motor Trend magazine.
 
 The assignment is based on estimation of 3 models:
-1. mpg as a function of cyl
+1. mpg as a function of wt
 2. mpg as a function of disp
-3  mpg as a function of both cyl and disp
+3  mpg as a function of both wt and disp
 
 Complete a linear model with data descripton, a model fit a, and a prediction of mpg based on weigth of 3050 lbs, with a displacement of 122 cubic inches (this is 2.5 L).
 
@@ -142,6 +142,10 @@ summary(model3)
 
 ### predicted mpg
 
+```{r}
+newData = data.frame(wt = 3.05, disp = 122)
+print(predict(model3, newData, interval = 'predict'))
+```
 
 # anova: compare models 2 and 3
 
@@ -161,3 +165,4 @@ print(anova_result)
 ```
 
 # Discussion/Conclusions
+The purpose of this assignment was to see the relationship of fuel efficiency with weight as a factor of the car's mpg and the displacement of the car as a factor of the car's mpg and compare those two models. The first model had a negative relationship with weight and mpg meaning that as the weight of the car went up, the fuel efficiency went down. The p-value of the model was below 0.05 and it had around 75% variation, showing that we can reject the notion that weight isn't a predictor of fuel efficiency. The second model had a negative relationship with displacement and mpg, the p-value of the model was below 0.05 and had around 72% variation. This shows that both are a good predictor of fuel efficiency. Model 3 which had weight and displacement as predictors of fuel efficiency had a p-value below 0.05 and variation around 78% showing that both are good as predictors for mpg, but that doesn't mean that you need two of them to determine mpg. With an anova comparison we can see that adding displacement to the weight model doesn't mean anything statistical significant improves because the p-value is above 0.05. This means using the weight model would be preferred to use. However, this doesn't include factors like cylinders or transmission type which can affect the fuel efficiency and the data set only has 32 cars so there is a limitation of the quantity of data.
