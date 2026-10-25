@@ -87,6 +87,7 @@ plot(mpg~disp,data=mtcars, pch=18)
 grid()
 ```
 
+As the displacement of the car increases, the mpg of the car decreases
 
 ### numerical summary
 ```{r}
@@ -105,6 +106,12 @@ summary(model2)
 
 ### predicted mpg
 
+```{r}
+newData = data.frame(wt = 3.05, disp = 122)
+print(predict(model2, newData, interval = 'predict'))
+```
+
+
 # Model 3 :
 
  mpg (miles per gallon) is the response (Y)
@@ -116,7 +123,10 @@ summary(model2)
 plot(mpg ~ wt+disp, data = mtcars)
 ```
 
+When the displacement and the weight of the car increases, the mpg of the car decreases.
+
 ### numerical summary
+No numerical summary, there are two regressors
 
 ### model summary
 model3= lm(mpg ~ wt+disp, data = mtcars)
@@ -128,19 +138,6 @@ summary(model3)
 ```
  mpg (miles per gallon) is the response (Y)
  wt (wt) and displacement (disp) are the predictors (X's)
-
-## data summary
-
-### graphical summary
-```{r}
-plot(mpg ~ wt+disp, data=mtcars)
-```
-
-### numerical summary
-
-No numerical summary for model 3; two regressors
-
-### model summary
 
 
 ### predicted mpg
@@ -163,4 +160,4 @@ anova_result <- anova(model1, model3)
 print(anova_result)
 ```
 
-# Discussion/Conclustions
+# Discussion/Conclusions
